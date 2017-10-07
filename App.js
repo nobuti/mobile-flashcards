@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import styled from 'styled-components/native';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import promise from "redux-promise";
 
+import reducers from './reducers';
 import * as Colors from './utils/colors';
 import StatusBar from './components/StatusBar';
 import Navigation from './components/Navigation';
+import Container from './components/Container';
 import { setLocalNotification } from './utils/notifications'
 
-const Container = styled.View`
-    flex: 1;
-    background-color: ${Colors.black};
-`;
+const createStoreWithMiddlewares = applyMiddleware(promise)(createStore);
 
 export default class App extends Component {
   componentDidMount() {
@@ -18,10 +20,12 @@ export default class App extends Component {
 
   render() {
     return (
-      <Container>
-        <StatusBar backgroundColor={Colors.black} barStyle='light-content' />
-        <Navigation />
-      </Container>
+      <Provider store={createStoreWithMiddlewares(reducers)}>
+        <Container>
+          <StatusBar backgroundColor={Colors.black} barStyle='light-content' />
+          <Navigation />
+        </Container>
+      </Provider>
     );
   }
 }

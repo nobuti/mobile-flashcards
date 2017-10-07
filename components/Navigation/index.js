@@ -3,12 +3,13 @@ import { Platform } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import { SimpleLineIcons } from '@expo/vector-icons';
 import Dummy from '../Dummy';
+import Decks from '../DeckList';
 import * as Colors from '../../utils/colors';
 
 const Tabs = TabNavigator(
   {
     Decks: {
-      screen: () => <Dummy>Decks</Dummy>,
+      screen: Decks,
       navigationOptions: {
         tabBarLabel: 'Decks',
         tabBarIcon: ({ tintColor }) => (
