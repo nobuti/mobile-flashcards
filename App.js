@@ -1,23 +1,24 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import styled from 'styled-components/native';
 
-export default class App extends React.Component {
+import * as Colors from './utils/colors';
+import StatusBar from './components/StatusBar';
+import Dummy from './components/Dummy';
+
+const Container = styled.View`
+    flex: 1;
+    background-color: ${Colors.black};
+`;
+
+export default class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
+      <Container>
+        <StatusBar backgroundColor={Colors.black} barStyle='light-content' />
+        <Dummy>
+          Hello world
+        </Dummy>
+      </Container>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
