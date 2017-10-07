@@ -31,17 +31,18 @@ const Tabs = TabNavigator(
       header: null,
     },
     tabBarOptions: {
-      activeTintColor: Platform.OS === 'ios' ? Colors.blue : Colors.white,
+      inactiveTintColor: Colors.white,
+      activeTintColor: Colors.yellow,
       style: {
         height: 56,
-        backgroundColor: Platform.OS === 'ios' ? Colors.white : Colors.blue,
+        backgroundColor: Colors.blue,
         shadowColor: 'rgba(0, 0, 0, 0.24)',
         shadowOffset: {
           width: 0,
           height: 3,
         },
         shadowRadius: 6,
-        shadowOpacity: 1,
+        shadowOpacity: 1
       },
     },
   }
