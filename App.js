@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 
 import * as Colors from './utils/colors';
 import StatusBar from './components/StatusBar';
-import Dummy from './components/Dummy';
+import Navigation from './components/Navigation';
 
 const Container = styled.View`
     flex: 1;
@@ -15,9 +15,7 @@ export default class App extends Component {
     return (
       <Container>
         <StatusBar backgroundColor={Colors.black} barStyle='light-content' />
-        <Dummy>
-          Hello world
-        </Dummy>
+        <Navigation />
       </Container>
     );
   }
