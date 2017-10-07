@@ -1,20 +1,29 @@
-import { FETCH_DECKS } from '../actions';
+import { FETCH_DECKS, NEW_DECK } from '../actions';
+import { submitEntry } from '../utils/api';
 
-const initialState = {
-  decks: {}
-};
-
-function reducer(state = initialState, action) {
+function reducer(state = {}, action) {
   switch (action.type) {
     case FETCH_DECKS:
-      var data = {
-        decks: action.payload
+      return {
+        ...state,
+        ...action.decks
       }
+
+    case NEW_DECK:
+      const { title } = action
+
+      submitEntry({
+        key: title,
+        entry: { title, questions: [] }
+      });
 
       return {
         ...state,
-        ...data
-      };
+        [title]: {
+          title,
+          questions: [],
+        }
+      }
 
     default:
       return state;

@@ -4,6 +4,7 @@ import { StackNavigator, TabNavigator } from 'react-navigation';
 import { SimpleLineIcons } from '@expo/vector-icons';
 import Dummy from '../Dummy';
 import Decks from '../DeckList';
+import NewDeck from '../NewDeck';
 import * as Colors from '../../utils/colors';
 
 const Tabs = TabNavigator(
@@ -18,9 +19,9 @@ const Tabs = TabNavigator(
       },
     },
     NewDeck: {
-      screen: () => <Dummy>New Deck</Dummy>,
+      screen: NewDeck,
       navigationOptions: {
-        tabBarLabel: 'Add Deck',
+        tabBarLabel: 'New Deck',
         tabBarIcon: ({ tintColor }) => (
           <SimpleLineIcons name="note" size={30} color={tintColor} />
         ),
@@ -49,40 +50,32 @@ const Tabs = TabNavigator(
   }
 );
 
-const MainNavigator = StackNavigator({
-  Home: {
-    screen: Tabs,
-    navigationOptions: { title: 'Home' },
-  },
-  Deck: {
-    screen: () => <Dummy>Deck</Dummy>,
+const MainNavigator = StackNavigator(
+  {
+    Home: {
+      screen: Tabs,
+      navigationOptions: { title: 'Decks' },
+    },
+    Deck: {
+      screen: () => <Dummy>Deck</Dummy>
+    },
+    NewCard: {
+      screen: () => <Dummy>New Card</Dummy>
+    },
+    Quiz: {
+      screen: () => <Dummy>Quiz</Dummy>
+    }
+  }, {
     navigationOptions: {
       headerTintColor: Colors.white,
       headerStyle: {
         backgroundColor: Colors.blue,
-      },
-    },
-  },
-  NewCard: {
-    screen: () => <Dummy>New Card</Dummy>,
-    navigationOptions: {
-      title: 'New Card',
-      headerTintColor: Colors.white,
-      headerStyle: {
-        backgroundColor: Colors.blue,
-      },
-    },
-  },
-  Quiz: {
-    screen: () => <Dummy>Quiz</Dummy>,
-    navigationOptions: {
-      title: 'Quiz',
-      headerTintColor: Colors.white,
-      headerStyle: {
-        backgroundColor: Colors.blue,
-      },
-    },
-  },
-});
+        height: 40,
+        justifyContent: 'center',
+        paddingTop: 0
+      }
+    }
+  }
+);
 
 export default MainNavigator;

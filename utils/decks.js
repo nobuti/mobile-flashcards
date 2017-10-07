@@ -2,7 +2,7 @@ import { AsyncStorage } from 'react-native';
 
 export const DECKS_STORAGE_KEY = 'MobileFlashcards:decks';
 
-export function getDummyData() {
+export const setDummyData = (results) => {
   let dummyData = {
     React: {
       title: 'React',
@@ -40,6 +40,10 @@ export function getDummyData() {
     }
   };
 
-  AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(dummyData));
-  return dummyData;
+  if (results == null) {
+    AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(dummyData));
+    return dummyData;
+  } else {
+    return JSON.parse(results);
+  }
 }

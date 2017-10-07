@@ -8,7 +8,8 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import styled from 'styled-components/native';
 import { AppLoading} from 'expo';
-import { fetchDecks } from '../../actions';
+import { receiveDecks } from '../../actions';
+import { fetchFlashCards } from '../../utils/api'
 import * as Colors from '../../utils/colors';
 import Container from '../Container';
 
@@ -44,8 +45,11 @@ class DeckList extends Component {
   }
 
   componentDidMount() {
-    const { fetchDecks } = this.props;
-    fetchDecks();
+    const { receiveDecks } = this.props;
+    fetchFlashCards()
+      .then(decks => {
+        receiveDecks(decks);
+      });
   }
 
   renderItem = ({ item }) => (
@@ -53,6 +57,8 @@ class DeckList extends Component {
       <TouchableOpacity
         onPress={() =>
           this.props.navigation.navigate('Deck', item)}
+        onLongPress={() =>
+          console.log('delete deck')}
       >
         <InnerCard>
           <TitleCard>{item.title}</TitleCard>
@@ -85,10 +91,10 @@ DeckList.PropTypes = {
   decks: PropTypes.object
 }
 
-const mapStateToProps = ({decks}) => {
+const mapStateToProps = (state) => {
   return {
-    decks
+    decks: state
   }
 };
 
-export default connect(mapStateToProps, {fetchDecks})(DeckList);
+export default connect(mapStateToProps, {receiveDecks})(DeckList);
