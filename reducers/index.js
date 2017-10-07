@@ -1,4 +1,4 @@
-import { FETCH_DECKS, NEW_DECK } from '../actions';
+import { FETCH_DECKS, NEW_DECK, NEW_CARD } from '../actions';
 import { submitEntry } from '../utils/api';
 
 function reducer(state = {}, action) {
@@ -10,7 +10,7 @@ function reducer(state = {}, action) {
       }
 
     case NEW_DECK:
-      const { title } = action
+      const { title } = action;
 
       submitEntry({
         key: title,
@@ -24,6 +24,27 @@ function reducer(state = {}, action) {
           questions: [],
         }
       }
+
+    case NEW_CARD: {
+      const { title, question, answer } = action;
+      const entry = {
+        title,
+        questions: [
+          { result: null, question, answer },
+          ...state[title].questions
+        ]
+      };
+
+      submitEntry({
+        key: title,
+        entry
+      });
+
+      return {
+        ...state,
+        [title]: entry
+      }
+    }
 
     default:
       return state;

@@ -44,6 +44,10 @@ class DeckList extends Component {
     ready: false
   }
 
+  static navigationOptions = ({ navigation }) => ({
+    headerTitle: 'Decks'
+  })
+
   componentDidMount() {
     const { receiveDecks } = this.props;
     fetchFlashCards()

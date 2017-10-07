@@ -55,6 +55,10 @@ class NewDeck extends Component {
     text: '',
   }
 
+  static navigationOptions = ({ navigation }) => ({
+    headerTitle: 'New Deck'
+  })
+
   submit = () => {
     const entry = this.state.text;
     const { decks, newDeck, navigation } = this.props;
@@ -97,7 +101,7 @@ class NewDeck extends Component {
 
         <TextInputContainer>
           <TextInput
-            underlineColorAndroid="transparent"
+            underlineColorAndroid='transparent'
             value={text}
             onChangeText={text => this.setState({ text })}
           />

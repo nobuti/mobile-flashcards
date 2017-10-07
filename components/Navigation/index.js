@@ -1,11 +1,12 @@
 import React from 'react';
-import { Platform } from 'react-native';
+import { View } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import { SimpleLineIcons } from '@expo/vector-icons';
 import Dummy from '../Dummy';
 import Decks from '../DeckList';
 import NewDeck from '../NewDeck';
 import Deck from '../Deck';
+import NewCard from '../NewCard';
 import * as Colors from '../../utils/colors';
 
 const Tabs = TabNavigator(
@@ -30,6 +31,7 @@ const Tabs = TabNavigator(
     },
   },
   {
+    initialRouteName: 'Decks',
     navigationOptions: {
       header: null,
     },
@@ -38,32 +40,22 @@ const Tabs = TabNavigator(
       activeTintColor: Colors.yellow,
       style: {
         height: 56,
-        backgroundColor: Colors.blue,
-        shadowColor: 'rgba(0, 0, 0, 0.24)',
-        shadowOffset: {
-          width: 0,
-          height: 3,
-        },
-        shadowRadius: 6,
-        shadowOpacity: 1
-      },
-    },
+        backgroundColor: Colors.blue
+      }
+    }
   }
 );
 
 const MainNavigator = StackNavigator(
   {
     Home: {
-      screen: Tabs,
-      navigationOptions: {
-        title: 'Decks'
-      }
+      screen: Tabs
     },
     Deck: {
       screen: Deck
     },
     NewCard: {
-      screen: () => <Dummy>New Card</Dummy>
+      screen: NewCard
     },
     Quiz: {
       screen: () => <Dummy>Quiz</Dummy>
@@ -76,7 +68,12 @@ const MainNavigator = StackNavigator(
         height: 40,
         justifyContent: 'center',
         paddingTop: 0
-      }
+      },
+      headerTitleStyle: {
+        alignSelf: 'center',
+        textAlign: 'center'
+      },
+      headerRight: (<View></View>)
     }
   }
 );

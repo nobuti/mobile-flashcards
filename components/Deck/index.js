@@ -57,7 +57,7 @@ const ButtonText = styled.Text`
 
 class Deck extends Component {
   static navigationOptions = ({ navigation }) => ({
-    title: navigation.state.params.title
+    headerTitle: navigation.state.params.title
   })
 
   render() {
