@@ -5,6 +5,7 @@ import { SimpleLineIcons } from '@expo/vector-icons';
 import Dummy from '../Dummy';
 import Decks from '../DeckList';
 import NewDeck from '../NewDeck';
+import Deck from '../Deck';
 import * as Colors from '../../utils/colors';
 
 const Tabs = TabNavigator(
@@ -54,10 +55,12 @@ const MainNavigator = StackNavigator(
   {
     Home: {
       screen: Tabs,
-      navigationOptions: { title: 'Decks' },
+      navigationOptions: {
+        title: 'Decks'
+      }
     },
     Deck: {
-      screen: () => <Dummy>Deck</Dummy>
+      screen: Deck
     },
     NewCard: {
       screen: () => <Dummy>New Card</Dummy>

@@ -56,7 +56,10 @@ class DeckList extends Component {
     <Card>
       <TouchableOpacity
         onPress={() =>
-          this.props.navigation.navigate('Deck', item)}
+          this.props.navigation.navigate('Deck', {
+            title: item.title
+          })
+        }
         onLongPress={() =>
           console.log('delete deck')}
       >
