@@ -9,7 +9,7 @@ export const setDummyData = (results) => {
       questions: [
         {
           question: 'What is React?',
-          answer: 'React is an open-source JavaScript library created by Facebook for building complex, interactive UIs in web and mobile applications.s'
+          answer: 'React is an open-source JavaScript library created by Facebook for building complex, interactive UIs in web and mobile applications.'
         },
         {
           question: 'How is React different?',

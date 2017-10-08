@@ -7,6 +7,7 @@ import Decks from '../DeckList';
 import NewDeck from '../NewDeck';
 import Deck from '../Deck';
 import NewCard from '../NewCard';
+import Quiz from '../Quiz';
 import * as Colors from '../../utils/colors';
 
 const Tabs = TabNavigator(
@@ -58,7 +59,7 @@ const MainNavigator = StackNavigator(
       screen: NewCard
     },
     Quiz: {
-      screen: () => <Dummy>Quiz</Dummy>
+      screen: Quiz
     }
   }, {
     navigationOptions: {
