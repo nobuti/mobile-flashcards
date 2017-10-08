@@ -1,4 +1,10 @@
-import { FETCH_DECKS, NEW_DECK, NEW_CARD } from '../actions';
+import _ from 'lodash';
+import {
+  FETCH_DECKS,
+  NEW_DECK,
+  NEW_CARD,
+  REMOVE_DECK
+} from '../actions';
 import { submitEntry } from '../utils/api';
 
 function reducer(state = {}, action) {
@@ -10,11 +16,16 @@ function reducer(state = {}, action) {
       }
 
     case NEW_DECK:
-      const { title } = action;
+      const {
+        title
+      } = action;
 
       submitEntry({
         key: title,
-        entry: { title, questions: [] }
+        entry: {
+          title,
+          questions: []
+        }
       });
 
       return {
@@ -25,24 +36,43 @@ function reducer(state = {}, action) {
         }
       }
 
-    case NEW_CARD: {
-      const { title, question, answer } = action;
-      const entry = {
-        title,
-        questions: [
-          { result: null, question, answer },
-          ...state[title].questions
-        ]
-      };
+    case NEW_CARD:
+      {
+        const {
+          title,
+          question,
+          answer
+        } = action;
+        const entry = {
+          title,
+          questions: [{
+              result: null,
+              question,
+              answer
+            },
+            ...state[title].questions
+          ]
+        };
 
-      submitEntry({
-        key: title,
-        entry
-      });
+        submitEntry({
+          key: title,
+          entry
+        });
 
+        return {
+          ...state,
+          [title]: entry
+        }
+      }
+
+    case REMOVE_DECK: {
+      const {
+        title
+      } = action;
+
+      const decks = _.omit(state, title);
       return {
-        ...state,
-        [title]: entry
+        ...decks
       }
     }
 

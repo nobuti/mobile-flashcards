@@ -3,40 +3,42 @@ import PropTypes from 'prop-types';
 import {
   FlatList,
   TouchableOpacity,
+  Alert
 } from 'react-native';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import styled from 'styled-components/native';
 import { AppLoading} from 'expo';
-import { receiveDecks } from '../../actions';
+import { receiveDecks, removeDeck } from '../../actions';
 import { fetchFlashCards } from '../../utils/api'
 import * as Colors from '../../utils/colors';
 import Container from '../Container';
 
 const Card = styled.View`
-  flex: 1;
   background-color: ${Colors.pink};
-  border-bottom-width: 1px;
+  border-bottom-width: 1;
   border-bottom-color: ${Colors.yellow};
-  padding: 20px;
+  padding-left: 20;
+  padding-right: 20;
+  padding-top: 20;
+  padding-bottom: 20;
 `;
 
 const InnerCard = styled.View`
-  flex: 1;
   flex-direction: column;
   align-items: center;
 `
 
 const TitleCard = styled.Text`
   color: ${Colors.white};
-  font-size: 32px;
+  font-size: 32;
   font-weight: 900;
-  margin-bottom: 10px;
+  margin-bottom: 10;
 `
 
 const DetailsCard = styled.Text`
   color: ${Colors.green};
-  font-size: 24px;
+  font-size: 24;
 `
 
 class DeckList extends Component {
@@ -59,13 +61,23 @@ class DeckList extends Component {
   renderItem = ({ item }) => (
     <Card>
       <TouchableOpacity
+        style={{flex: 1}}
         onPress={() =>
           this.props.navigation.navigate('Deck', {
             title: item.title
           })
         }
         onLongPress={() =>
-          console.log('delete deck')}
+          Alert.alert(
+            'Are you sure you want to delete this deck and all of its cards?',
+            null,
+            [
+              {text: 'Cancel'},
+              {text: 'OK', onPress: () => this.props.removeDeck({ title: item.title })},
+            ],
+            { cancelable: false }
+          )
+        }
       >
         <InnerCard>
           <TitleCard>{item.title}</TitleCard>
@@ -104,4 +116,4 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default connect(mapStateToProps, {receiveDecks})(DeckList);
+export default connect(mapStateToProps, {receiveDecks, removeDeck})(DeckList);
