@@ -14,16 +14,16 @@ import * as Colors from '../../utils/colors';
 const TextInput = styled.TextInput`
   color: ${Colors.white};
   font-size: 32;
-  margin-bottom: 10px;
+  margin-bottom: 10;
   border-radius: 0;
   border: 0;
-  width: 300px;
+  width: 300;
   text-align: center;
 `
 
 const TextInputContainer = styled.View`
-  margin-bottom: 30px;
-  border-bottom-width: 1px;
+  margin-bottom: 30;
+  border-bottom-width: 1;
   border-bottom-color: ${Colors.yellow};
 `
 

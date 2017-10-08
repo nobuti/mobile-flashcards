@@ -23,14 +23,14 @@ const InnerCard = styled.View`
 
 const TitleCard = styled.Text`
   color: ${Colors.white};
-  font-size: 32px;
+  font-size: 32;
   font-weight: 900;
-  margin-bottom: 10px;
+  margin-bottom: 10;
 `
 
 const DetailsCard = styled.Text`
   color: ${Colors.white};
-  font-size: 24px;
+  font-size: 24;
 `
 
 const ButtonColors = {
