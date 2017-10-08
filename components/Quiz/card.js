@@ -18,6 +18,7 @@ const Container = styled.View`
   flex: 1;
   background-color: ${Colors.black};
   justify-content: center;
+  padding-bottom: 10;
 `;
 
 const Holder = styled.ScrollView`

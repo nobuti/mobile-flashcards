@@ -23,6 +23,10 @@ const TextInput = styled.TextInput`
   text-align: center;
 `
 
+const Holder = styled.View`
+  margin-bottom: 50;
+`
+
 const TextInputContainer = styled.View`
   margin-bottom: 30;
   border-bottom-width: 1;
@@ -49,7 +53,8 @@ const ButtonText = styled.Text`
 const Title = styled.Text`
   color: ${Colors.white};
   font-size: 32;
-  margin-bottom: 30;
+  margin-bottom: 50;
+  font-weight: 900;
 `
 
 class NewCard extends Component {
@@ -104,25 +109,27 @@ class NewCard extends Component {
           New Card
         </Title>
 
-        <TextInputContainer>
-          <TextInput placeholder='Question'
-            underlineColorAndroid='transparent'
-            placeholderTextColor='#929292'
-            value={question}
-            onChangeText={(input) => { this.setState({ question: input }) }}
-          />
-        </TextInputContainer>
+        <Holder>
+          <TextInputContainer>
+            <TextInput placeholder='Question'
+              underlineColorAndroid='transparent'
+              placeholderTextColor='#929292'
+              value={question}
+              onChangeText={(input) => { this.setState({ question: input }) }}
+            />
+          </TextInputContainer>
 
-        <TextInputContainer>
-          <TextInput placeholder='Answer'
-            underlineColorAndroid='transparent'
-            placeholderTextColor='#929292'
-            value={answer}
-            onChangeText={(input) => { this.setState({ answer: input }) }}
-            multiline = {true}
-            numberOfLines={4}
-          />
-        </TextInputContainer>
+          <TextInputContainer>
+            <TextInput placeholder='Answer'
+              underlineColorAndroid='transparent'
+              placeholderTextColor='#929292'
+              value={answer}
+              onChangeText={(input) => { this.setState({ answer: input }) }}
+              multiline = {true}
+              numberOfLines={4}
+            />
+          </TextInputContainer>
+        </Holder>
 
         <Button
           onPress={this.addCard}
