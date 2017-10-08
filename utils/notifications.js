@@ -26,8 +26,6 @@ function createNotification() {
 }
 
 export function setLocalNotification() {
-  AsyncStorage.clear();
-
   AsyncStorage.getItem(NOTIFICATION_KEY)
   .then(JSON.parse)
   .then(data => {

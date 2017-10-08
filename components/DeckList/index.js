@@ -37,7 +37,7 @@ const TitleCard = styled.Text`
 `
 
 const DetailsCard = styled.Text`
-  color: ${Colors.green};
+  color: ${Colors.yellow};
   font-size: 24;
 `
 

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components/native';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 
+import { clearLocalNotification } from '../../utils/notifications';
 import * as Colors from '../../utils/colors';
 
 const Container = styled.View`
@@ -51,39 +52,47 @@ const Fill = styled.Text`
   font-weight: 900;
 `
 
-export default ({onRetry, correct, questions}) => {
-  return (
-    <Container>
-      {
-        (correct === questions) ?
-          <Text>Perfect!</Text> :
-          <Text>Almost there!</Text>
-      }
+export default class Result extends Component {
+  componentDidMount() {
+    clearLocalNotification();
+  }
 
-      <Holder>
-        <AnimatedCircularProgress
-          size={200}
-          width={20}
-          fill={(correct/questions) * 100}
-          tintColor={Colors.green}
-          backgroundColor={Colors.yellow}
-          friction={10}>
-          {
-            (fill) => (
-              <Fill>
-                { Math.round(fill) }
-              </Fill>
-            )
-          }
-        </AnimatedCircularProgress>
-      </Holder>
+  render () {
+    const {correct, questions, onRetry} = this.props;
 
-      <Button
-        onPress={onRetry}
-      >
-        <ButtonText>Retry</ButtonText>
-      </Button>
-    </Container>
-  );
+    return (
+      <Container>
+        {
+          (correct === questions) ?
+            <Text>Perfect!</Text> :
+            <Text>Almost there!</Text>
+        }
+
+        <Holder>
+          <AnimatedCircularProgress
+            size={200}
+            width={20}
+            fill={(correct/questions) * 100}
+            tintColor={Colors.green}
+            backgroundColor={Colors.yellow}
+            friction={10}>
+            {
+              (fill) => (
+                <Fill>
+                  { Math.round(fill) }
+                </Fill>
+              )
+            }
+          </AnimatedCircularProgress>
+        </Holder>
+
+        <Button
+          onPress={onRetry}
+        >
+          <ButtonText>Retry</ButtonText>
+        </Button>
+      </Container>
+    );
+  }
 }
 
